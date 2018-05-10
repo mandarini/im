@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import * as io from 'socket.io-client';
 import { Observable } from 'rxjs/Observable';
 import * as Rx from 'rxjs/Rx';
-import { environment } from '../environments/environment';
 
 @Injectable()
 export class WebsocketService {
@@ -17,11 +16,11 @@ export class WebsocketService {
     // you can hard code `environment.ws_url` as `http://localhost:5000`
     // this.socket = io("http://10.16.4.175:5000");
     // this.socket = io("http://192.168.1.4:5000");
-    this.socket = io("wss://psybercity.herokuapp.com/");
+    this.socket = io('wss://psybercity.herokuapp.com/');
 
     // We define our observable which will observe any incoming messages
     // from our socket.io server.
-    let observable = new Observable(observer => {
+    const observable = new Observable(observer => {
       this.socket.on('message', (data) => {
         // console.log("Received message from Websocket Server")
         observer.next(data);
@@ -34,7 +33,7 @@ export class WebsocketService {
     // We define our Observer which will listen to messages
     // from our other components and send messages back to our
     // socket server whenever the `next()` method is called.
-    let observer = {
+    const observer = {
       next: (data: Object) => {
         this.socket.emit('message', data);
       },
