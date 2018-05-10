@@ -9,3 +9,9 @@ This app receives mobile phone sensor data from a websocket server.
 ## How to use?
 
 Use the other app to send data from your phone here.
+
+## I want it!
+
+Accessible at
+
+[mandarini.github.io/im](https://mandarini.github.io/im/)
