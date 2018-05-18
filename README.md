@@ -28,9 +28,15 @@ cd wsserver
 node app.js
 ```
 
-### You need to connect this app to the server
+### You need the web app for mobile
 
-You have to change the server address on `websocket.service.ts` to be the one of your local server,
+```
+git clone git@github.com:mandarini/m.git
+```
+
+### You need to connect the web app for mobile to the server
+
+In the `m/` app folder, you have to change the server address on `websocket.service.ts` to be the one of your local server,
 the one you started on the previous step.
 
 1. you need the IP of your machine on your local network.
@@ -41,9 +47,9 @@ Run `ifconfig` or `ipconfig` (according to your OS) and copy your inet address.
 where `xx.xx.xx.xx` your local address and `5000` the port that our server is listening to
 (see the `app.js` file in the wsserver project)
 
-### You need to run the app (duh)!
+### You need to run the web app for mobile (duh)!
 
-In the app directory run the following command:
+In the `m/` app directory run the following command:
 
 ```
 ng serve --host 0.0.0.0 --port 4201
@@ -58,22 +64,24 @@ Here we are also specifying a port, because we will be also running the laptop a
 Open a browser on your mobile phone (preferably chrome of firefox for more sensors) and navigate to your locally IP
 address (the one we found before, running `ifconfig`), on port 4200.
 
-### You need, now, the desktop app!
+### You need, now, the web app for the laptop/desktop browser (this one!)
 
-1. Download and run the nodejs websocket server:
+1. Navigate to the app folder
 
 ```
-git clone git@github.com:mandarini/im.git
 cd im/
 ```
 
 2. Connect it to the local websocket server, like we did with the mobile web app.
-Go to line 16 in the `websocket.service.ts` file and change
+Go to line 16 in the `im/` folder in the `websocket.service.ts` file and change
 `this.socket = io('wss://psybercity.herokuapp.com/');` to `this.socket = io('http://xx.xx.xx.xx:5000')`
 where `xx.xx.xx.xx` your local address and `5000` the port that our server is listening to
 (see the `app.js` file in the wsserver project).
 
-3. ng server
+3. Run the app
+```
+ng serve
+```
 
 4. Open a browser and navigate to `http://localhost:4200`
 
