@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
 
   devices: Array<string>;
 
-  onEnter(value: number) { this.maxusers = parseInt(value, 10); }
+  onEnter(value: string) { this.maxusers = parseInt(value, 10); }
 
   constructor(private interfaceService: InterfaceService) {
     this.maxusers = 1;

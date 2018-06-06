@@ -3,7 +3,7 @@
   <h3>
     maximum users allowed: {{maxusers}}
   </h3>
-  <input #box (keyup.enter)="onEnter(box.value)" [value]="maxusers">
+  <input type="number" #box (keyup.enter)="onEnter(box.value)" [value]="maxusers">
   <div class="received-data">
     <table>
       <tr>
