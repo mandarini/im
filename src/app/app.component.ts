@@ -83,6 +83,9 @@ export class AppComponent implements OnInit {
 
         if (msg.text.type ===  'logout') {
           console.log('logged out');
+          console.log(this.devices.indexOf(msg.text.uuid));
+          this.devices.splice(this.devices.indexOf(msg.text.uuid), 1 );
+          console.log(this.devices);
         }
       }
 
