@@ -27,18 +27,18 @@ export class AppComponent implements OnInit {
 
   private cube: THREE.Mesh;
 
-  count: number;
-  private devices: Array<string>;
+  devices: Array<string>;
 
-  onEnter(value: number) { this.maxusers = value; }
+  onEnter(value: number) { this.maxusers = parseInt(value, 10); }
 
   constructor(private interfaceService: InterfaceService) {
+    this.maxusers = 1;
+    this.devices = [];
   }
 
   ngOnInit() {
 
     this.container = this.elementRef.nativeElement;
-    this.maxusers = 10;
 
     console.log(this.container);
 
@@ -46,18 +46,35 @@ export class AppComponent implements OnInit {
     this.kitty = false;
     this.clouds = true;
     this.three = false;
-    this.count = 0;
-    this.devices = [];
 
     this.interfaceService.messages.subscribe(msg => {
-      if (this.count <= this.maxusers) {
+      console.log(this.devices.length, this.maxusers);
+
+      /**
+       * Here, I want to add the first 10 devices in an array.
+       * Then, only these devices will be allowed to affect the UI.
+       *
+       * First off, I am checking how many active users I have, and if the
+       * number of active users is less than the max allowed.
+       * Initially I have zero active users.
+       *
+       * So, if the uuid of the device is not already in our device array,
+       * then I am adding it.
+       * Also, I am augmenting the number of active users.
+       *
+       * Now, another user comes along.
+       *
+       * HOW ARE THEY EVEN getting added to the array!!!
+       *
+       * */
+
+      if (this.devices.length < this.maxusers) {
         if (!this.devices.includes(msg.text.uuid)) {
           this.devices.push(msg.text.uuid);
-          this.count++;
         }
       }
 
-      console.log('my msg', msg , this.devices);
+      console.log('my msg', this.devices);
       if (this.devices.includes(msg.text.uuid)) {
 
         if (msg.text.type === 'motion') {
