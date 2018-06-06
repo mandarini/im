@@ -13,7 +13,13 @@ export class InterfaceService {
       .connect()
       .map((response: any): any => {
         return response;
-      })
+      });
+  }
+
+  // Our simplified interface for sending
+  // messages back to our socket.io server
+  sendMsg(msg) {
+    this.messages.next(msg);
   }
 
 }
