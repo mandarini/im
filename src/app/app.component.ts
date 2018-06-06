@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
   three: boolean;
   compete: boolean;
   clouds: boolean;
+  maxusers: number;
 
 
   @ViewChild('container') elementRef: ElementRef;
@@ -29,12 +30,15 @@ export class AppComponent implements OnInit {
   count: number;
   private devices: Array<string>;
 
+  onEnter(value: number) { this.maxusers = value; }
+
   constructor(private interfaceService: InterfaceService) {
   }
 
   ngOnInit() {
 
     this.container = this.elementRef.nativeElement;
+    this.maxusers = 10;
 
     console.log(this.container);
 
@@ -43,10 +47,10 @@ export class AppComponent implements OnInit {
     this.clouds = true;
     this.three = false;
     this.count = 0;
-    this.devices = [''];
+    this.devices = [];
 
     this.interfaceService.messages.subscribe(msg => {
-      if (this.count <= 10) {
+      if (this.count <= this.maxusers) {
         if (!this.devices.includes(msg.text.uuid)) {
           this.devices.push(msg.text.uuid);
           this.count++;

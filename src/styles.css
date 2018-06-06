@@ -3,3 +3,7 @@ body {
   font-family: Roboto, sans-serif;
   background-color: darkslategray;
 }
+
+h3 {
+  color: white;
+}

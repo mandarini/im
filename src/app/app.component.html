@@ -1,6 +1,9 @@
 <div class="full">
   <h1>Client | {{count}} active users</h1>
-
+  <h3>
+    maximum users allowed: {{maxusers}}
+  </h3>
+  <input #box (keyup.enter)="onEnter(box.value)" [value]="maxusers">
   <div class="received-data">
     <table>
       <tr>
